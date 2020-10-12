@@ -20,6 +20,7 @@
 		5B818126252FC1210084C892 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B818125252FC1210084C892 /* TrackDetailView.swift */; };
 		5B818128252FC1370084C892 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B818127252FC1370084C892 /* TrackDetailView.xib */; };
 		5B9279FC25337C2B006C654C /* CMTime + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9279FB25337C2B006C654C /* CMTime + Extension.swift */; };
+		5B9279FE253509F3006C654C /* Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9279FD253509F3006C654C /* Nib.swift */; };
 		5B9C55F1252538D4008EC7D4 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C55EA252538D4008EC7D4 /* SearchPresenter.swift */; };
 		5B9C55F2252538D4008EC7D4 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C55EB252538D4008EC7D4 /* SearchWorker.swift */; };
 		5B9C55F3252538D4008EC7D4 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9C55EC252538D4008EC7D4 /* SearchRouter.swift */; };
@@ -51,6 +52,7 @@
 		5B818125252FC1210084C892 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		5B818127252FC1370084C892 /* TrackDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackDetailView.xib; sourceTree = "<group>"; };
 		5B9279FB25337C2B006C654C /* CMTime + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + Extension.swift"; sourceTree = "<group>"; };
+		5B9279FD253509F3006C654C /* Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nib.swift; sourceTree = "<group>"; };
 		5B9C55EA252538D4008EC7D4 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		5B9C55EB252538D4008EC7D4 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		5B9C55EC252538D4008EC7D4 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				5B9C55FA25254324008EC7D4 /* UIViewController + Storyboard.swift */,
 				5B9279FB25337C2B006C654C /* CMTime + Extension.swift */,
+				5B9279FD253509F3006C654C /* Nib.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				5B9C5605252D04BE008EC7D4 /* FooterView.swift in Sources */,
 				5B9279FC25337C2B006C654C /* CMTime + Extension.swift in Sources */,
 				5B9C5601252BA49C008EC7D4 /* TrackCell.swift in Sources */,
+				5B9279FE253509F3006C654C /* Nib.swift in Sources */,
 				5B32B4082523C185007DAC95 /* AppDelegate.swift in Sources */,
 				5B32B41C2523C1AF007DAC95 /* MainTabBarController.swift in Sources */,
 				5B9C55F2252538D4008EC7D4 /* SearchWorker.swift in Sources */,
