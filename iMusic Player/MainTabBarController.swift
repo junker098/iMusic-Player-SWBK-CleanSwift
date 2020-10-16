@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol MainTabBarControllerDelegate: class {
     func minimizeTrackDetailController()
@@ -22,6 +23,8 @@ class MainTabBarController: UITabBarController {
     
     let trackDetailView:TrackDetailView = TrackDetailView.loadFromNib()
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,9 +34,14 @@ class MainTabBarController: UITabBarController {
         setupTrackDetailView()
         searchViewController.tabBarDelegate = self
         
+        let library = Library()
+        let hostVC = UIHostingController(rootView: library)
+        hostVC.tabBarItem.image = #imageLiteral(resourceName: "library")
+        hostVC.tabBarItem.title = "Library"
+        
         viewControllers = [
-            generateViewController(searchViewController, #imageLiteral(resourceName: "ios10-apple-music-search-5nav-icon"), "Search"),
-            generateViewController(ViewController(), #imageLiteral(resourceName: "ios10-apple-music-library-5nav-icon"), "Library")
+            hostVC,
+            generateViewController(searchViewController, #imageLiteral(resourceName: "ios10-apple-music-search-5nav-icon"), "Search")
         ]
     }
     
