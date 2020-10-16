@@ -75,8 +75,8 @@ extension MainTabBarController: MainTabBarControllerDelegate {
     
     func maximizeTrackDetailController(viewModel: SearchViewModel.Cell?) {
         
-        maximaizedTopAnchorConstraint.isActive = true
         minimazidTopAnchorConstraint.isActive = false
+        maximaizedTopAnchorConstraint.isActive = true
         maximaizedTopAnchorConstraint.constant = 0
         bottomAncorConstraint.constant = 0
         

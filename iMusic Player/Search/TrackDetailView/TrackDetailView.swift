@@ -53,6 +53,7 @@ class TrackDetailView: UIView {
         super .awakeFromNib()
         normalTrackImageSize()
         miniPlayPauseButton.imageEdgeInsets = .init(top: 13, left: 13, bottom: 13, right: 13)
+        setupGestures()
     }
     
      //MARK: - Setup
@@ -74,6 +75,77 @@ class TrackDetailView: UIView {
         trackImageView.sd_setImage(with: url, completed: nil)
         miniTrackkImage.sd_setImage(with: url, completed: nil )
     }
+    
+    //MARK: - Setup Gestures
+    
+    private func setupGestures() {
+        miniTrackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximized)))
+        miniTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesture)))
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDismissPlan)))
+    }
+    
+    @objc private func handleTapMaximized() {
+        print("Tap gesture")
+        self.trackDetailViewDelegate?.maximizeTrackDetailController(viewModel: nil)
+    }
+    
+    @objc private func panGesture(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            print("began")
+        case .changed:
+            handlePanChanged(gesture: gesture)
+        case .ended:
+            handlePanEnded(gesture: gesture)
+        @unknown default:
+            print("unknown default")
+        }
+    }
+    
+    func handlePanChanged(gesture: UIPanGestureRecognizer) {    //Следит за жестом двигая шторку мини плеера
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        
+        let newAlpha = 1 + translation.y / 200
+        self.miniTrackView.alpha = newAlpha < 0 ? 0 : newAlpha
+        self.maximizedStackView.alpha = -translation.y / 200
+    }
+    
+    func handlePanEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.transform = .identity
+            if translation.y < -200 || velocity.y < -500 {
+                self.trackDetailViewDelegate?.maximizeTrackDetailController(viewModel: nil)
+            } else {
+                self.maximizedStackView.alpha = 0
+                self.miniTrackView.alpha = 1
+            }
+        }, completion: nil)
+    }
+    
+    @objc private func handleDismissPlan(gesture: UIPanGestureRecognizer) {
+        
+        switch gesture.state {
+        case .changed:
+            let translation = gesture.translation(in: superview)
+            maximizedStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        case .ended:
+            let translation = gesture.translation(in: self.superview)
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.maximizedStackView.transform = .identity
+                if translation.y > 50 {
+                    self.trackDetailViewDelegate?.minimizeTrackDetailController()
+                }
+            }, completion: nil)
+        @unknown default:
+            print("unknown default")
+        }
+    }
+    //MARK: - Play track
     
     private func playTrack(previewURL: String?) {
         guard let stringUrl = previewURL else { return }
